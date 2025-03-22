@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Controlador REST para gestionar las operaciones de los apuntes.
  */
+@CrossOrigin(origins = "http://localhost:3000") // Permitir peticiones desde React
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -24,9 +25,6 @@ public class NoteController {
 
     /**
      * Endpoint para crear un nuevo apunte.
-     *
-     * @param note Objeto Note a crear.
-     * @return Apunte creado.
      */
     @PostMapping
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
@@ -36,8 +34,6 @@ public class NoteController {
 
     /**
      * Endpoint para obtener todos los apuntes.
-     *
-     * @return Lista de apuntes.
      */
     @GetMapping
     public ResponseEntity<List<Note>> getAllNotes() {
@@ -47,9 +43,6 @@ public class NoteController {
 
     /**
      * Endpoint para obtener un apunte por su ID.
-     *
-     * @param id Identificador del apunte.
-     * @return Apunte encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Note> getNoteById(@PathVariable Long id) {
@@ -60,10 +53,6 @@ public class NoteController {
 
     /**
      * Endpoint para actualizar un apunte existente.
-     *
-     * @param id   Identificador del apunte a actualizar.
-     * @param note Datos actualizados del apunte.
-     * @return Apunte actualizado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Note> updateNote(@PathVariable Long id, @RequestBody Note note) {
@@ -77,9 +66,6 @@ public class NoteController {
 
     /**
      * Endpoint para eliminar un apunte por su ID.
-     *
-     * @param id Identificador del apunte a eliminar.
-     * @return Respuesta sin contenido.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
